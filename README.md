@@ -4,7 +4,7 @@ A desktop app to beat procrastination: a time-block calendar, a focus timer and 
 
 ## Install (Windows desktop app)
 
-**[⬇ Download LockedIn-Setup.exe](https://github.com/xmelqui/LOCKEDIN/releases/latest/download/LockedIn-Setup.exe)** and run it. It creates shortcuts on the desktop and in the Start menu.
+**[Download LockedIn-Setup.exe](https://github.com/xmelqui/LOCKEDIN/releases/latest/download/LockedIn-Setup.exe)** and run it. It creates shortcuts on the desktop and in the Start menu.
 
 The installer is rebuilt and published automatically to [Releases](https://github.com/xmelqui/LOCKEDIN/releases) on every push to `main`. To publish a new version instead of updating the current one, bump `version` in `package.json`.
 

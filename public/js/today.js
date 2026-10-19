@@ -90,7 +90,7 @@ function timerHtml() {
       ${t.mode === 'focus' ? `<p class="timer-meta">Distractions: <b>${t.distractions}</b> · Pauses: <b>${t.pauses}</b></p>` : ''}
       <div class="btn-row center">
         ${paused ? '<button class="btn btn-primary" data-act="resume">▶ Resume</button>' : '<button class="btn" data-act="pause">❚❚ Pause</button>'}
-        ${t.mode === 'focus' ? '<button class="btn" data-act="distraction" title="Log that you got distracted and get back to the task">😵 Got distracted</button>' : ''}
+        ${t.mode === 'focus' ? '<button class="btn" data-act="distraction" title="Log that you got distracted and get back to the task">Got distracted</button>' : ''}
         ${t.mode === 'focus' ? '<button class="btn btn-ghost" data-act="stop">■ Finish</button>' : '<button class="btn btn-ghost" data-act="skip">Skip break</button>'}
       </div>
       <div class="pomos">${dots}<span>${n} today</span></div>

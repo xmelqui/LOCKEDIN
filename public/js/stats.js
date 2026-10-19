@@ -136,7 +136,7 @@ export function renderStats() {
       <div class="tile"><span>Total effective focus</span><b>${fmtDuration(d.total)}</b></div>
       <div class="tile"><span>Daily average</span><b>${fmtDuration(avg)}</b></div>
       <div class="tile"><span>Days goal met</span><b>${d.metDays}<small>/${range}</small></b></div>
-      <div class="tile"><span>Current streak</span><b>${d.streak} ${d.streak === 1 ? 'day' : 'days'} ${d.streak >= 3 ? '🔥' : ''}</b></div>
+      <div class="tile"><span>Current streak</span><b>${d.streak} ${d.streak === 1 ? 'day' : 'days'}</b></div>
       <div class="tile"><span>Plan adherence</span><b>${adherence == null ? '—' : `${adherence}%`}</b><small>${d.kept}/${d.past} blocks started</small></div>
       <div class="tile"><span>Distractions per hour</span><b>${dph}</b></div>
     </div>

@@ -57,7 +57,7 @@ export function checkSchedule() {
       if (n <= MAX_NUDGES) {
         const late = Math.round((now - b.startTs) / MIN);
         once(`nudge${n}:${b.key}`, () =>
-          notify('Procrastinating? 👀', `"${b.title}" started ${late} min ago. Open it and take the smallest possible first step.`, {
+          notify('Procrastinating?', `"${b.title}" started ${late} min ago. Open it and take the smallest possible first step.`, {
             tag: b.key,
             urgent: true,
             data,
@@ -93,7 +93,7 @@ export function checkSchedule() {
       const goal = s.dailyGoalMin * MIN;
       const pct = Math.round((eff / goal) * 100);
       notify(
-        pct >= 100 ? 'Daily goal reached! 🔥' : 'Daily summary',
+        pct >= 100 ? 'Daily goal reached!' : 'Daily summary',
         `${fmtDuration(eff)} of effective focus (${pct}% of your ${fmtDuration(goal)} goal).`,
       );
     });

@@ -129,7 +129,7 @@ export function tick() {
   if (t.mode === 'focus') {
     const s = finish({ completed: true });
     const n = pomodorosToday();
-    notify('Focus block complete! 🎉', `${fmtDuration(s?.effectiveMs ?? 0)} on "${t.title}". That's ${n} today. Time for a break.`, {
+    notify('Focus block complete!', `${fmtDuration(s?.effectiveMs ?? 0)} on "${t.title}". That's ${n} today. Time for a break.`, {
       tag: 'timer',
       urgent: true,
       actions: [{ action: 'break', title: 'Take a break' }, { action: 'again', title: 'Another block' }],

@@ -23,8 +23,8 @@ export function renderSettings() {
   const s = state.settings;
   const perm = permission();
   const permText = {
-    granted: '✅ Enabled',
-    denied: '⛔ Blocked: enable them in your browser site settings (padlock icon).',
+    granted: 'Enabled',
+    denied: 'Blocked: enable them in your browser site settings (padlock icon).',
     default: 'Not enabled',
     unsupported: "This browser doesn't support notifications.",
   }[perm];
@@ -34,7 +34,7 @@ export function renderSettings() {
     <section class="card">
       <h3 class="card-title">Notifications</h3>
       ${desktop ? `
-        <p>Status: <b>✅ Windows notifications enabled</b></p>
+        <p>Status: <b>Windows notifications enabled</b></p>
         <label class="setting check"><input type="checkbox" data-autostart /> <span>Launch LockedIn when Windows starts (in the background, in the tray)</span></label>
         <div class="btn-row"><button class="btn" data-test>Send test notification</button></div>
         <p class="hint">Closing the window doesn't quit the app: it keeps running in the system tray and keeps reminding you. To quit completely, right-click its icon → <i>Quit</i>. If notifications don't show up, make sure Windows <i>Do not disturb</i> is off.</p>` : `
