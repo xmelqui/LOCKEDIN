@@ -4,7 +4,9 @@ A desktop app to beat procrastination: a time-block calendar, a focus timer and 
 
 ## Install (Windows desktop app)
 
-Build the installer (see below), then run **`dist/LockedIn Setup 1.0.0.exe`**. It creates shortcuts on the desktop and in the Start menu.
+**[⬇ Download LockedIn-Setup.exe](https://github.com/xmelqui/LOCKEDIN/releases/latest/download/LockedIn-Setup.exe)** and run it. It creates shortcuts on the desktop and in the Start menu.
+
+The installer is rebuilt and published automatically to [Releases](https://github.com/xmelqui/LOCKEDIN/releases) on every push to `main`. To publish a new version instead of updating the current one, bump `version` in `package.json`.
 
 - **Closing the window** keeps LockedIn running in the **system tray** (next to the clock), where it keeps reminding you. To quit completely: right-click the icon → *Quit*.
 - From the tray icon you can start a quick focus session, pause, log a distraction or finish the session.
@@ -16,7 +18,7 @@ Build the installer (see below), then run **`dist/LockedIn Setup 1.0.0.exe`**. I
 ```bash
 npm install
 npm start        # run the desktop app (Electron)
-npm run dist     # build the Windows installer into dist/
+npm run dist     # build the Windows installer locally into dist/
 npm run web      # web version at http://localhost:4321 (no Electron)
 ```
 
@@ -46,6 +48,7 @@ npm run web      # web version at http://localhost:4321 (no Electron)
 ## Project structure
 
 ```
+.github/workflows/   CI: builds the installer and publishes it as a GitHub Release
 electron/main.cjs    desktop app: window, tray, native notifications, launch at login
 electron/preload.cjs secure bridge between the UI and Windows
 server.js            static server for the web version (localhost:4321)

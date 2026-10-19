@@ -35,7 +35,8 @@
     },
     "win": {
       "icon": "electron/icon.png",
-      "target": "nsis"
+      "target": "nsis",
+      "artifactName": "LockedIn-Setup.${ext}"
     },
     "nsis": {
       "oneClick": false,

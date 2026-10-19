@@ -1,0 +1,52 @@
+# Builds the Windows installer on every push to main and publishes it as a
+# GitHub Release, so the latest .exe is always available at:
+# https://github.com/xmelqui/LOCKEDIN/releases/latest/download/LockedIn-Setup.exe
+name: Build & release installer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build installer
+        run: npx electron-builder --win nsis --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Publish release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          NOTES="Windows installer built from ${GITHUB_SHA::7}.
+
+          Download **LockedIn-Setup.exe** below and run it. Windows SmartScreen may warn the first time because the installer isn't code-signed: *More info → Run anyway*."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/LockedIn-Setup.exe --clobber
+            gh release edit "$TAG" --notes "$NOTES" --latest
+          else
+            gh release create "$TAG" dist/LockedIn-Setup.exe --title "LockedIn $VERSION" --notes "$NOTES" --latest
+          fi
