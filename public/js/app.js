@@ -1,6 +1,6 @@
 import { state, subscribe, toggleDone, STORAGE_KEY } from './store.js';
 import { desktop, initNotifications, onNotificationClick, permission, requestPermission } from './notify.js';
-import { tick, startFocus, startBreak, pause, resume, finish, logDistraction, elapsedMs } from './timer.js';
+import { tick, startFocus, startBreak, pause, resume, finish, elapsedMs } from './timer.js';
 import { checkSchedule } from './scheduler.js';
 import { renderToday, updateLive, startBlock } from './today.js';
 import { renderCalendar } from './calendar.js';
@@ -69,8 +69,6 @@ desktop?.onTrayAction((action) => {
     startFocus({ title: 'Quick session' });
   } else if (action === 'toggle-pause' && t) {
     t.segmentStart ? pause() : resume();
-  } else if (action === 'distraction') {
-    logDistraction();
   } else if (action === 'stop' && t) {
     finish();
   }

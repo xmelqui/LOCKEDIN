@@ -108,7 +108,6 @@ function updateTrayMenu() {
     running
       ? { label: paused ? 'Resume' : 'Pause', click: () => send('tray-action', 'toggle-pause') }
       : { label: 'Start quick focus', click: () => { send('tray-action', 'quick-focus'); showWindow(); } },
-    ...(running && mode === 'focus' ? [{ label: 'Got distracted (+1)', click: () => send('tray-action', 'distraction') }] : []),
     ...(running ? [{ label: mode === 'focus' ? 'Finish session' : 'Skip break', click: () => send('tray-action', 'stop') }] : []),
     { type: 'separator' },
     { label: 'Launch at Windows startup', type: 'checkbox', checked: autostartEnabled(), click: (item) => setAutostart(item.checked) },

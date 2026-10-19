@@ -42,7 +42,6 @@ export function startFocus({ title, category = 'other', blockKey = null, minutes
     segmentStart: now,
     accumulatedMs: 0,
     targetMs: minutes ? minutes * 60_000 : null,
-    distractions: 0,
     pauses: 0,
   };
   save();
@@ -60,7 +59,6 @@ export function startBreak(minutes) {
     segmentStart: now,
     accumulatedMs: 0,
     targetMs: mins * 60_000,
-    distractions: 0,
     pauses: 0,
   };
   save();
@@ -79,12 +77,6 @@ export function resume() {
   const t = state.timer;
   if (!t || t.segmentStart) return;
   t.segmentStart = Date.now();
-  save();
-}
-
-export function logDistraction() {
-  if (state.timer?.mode !== 'focus') return;
-  state.timer.distractions += 1;
   save();
 }
 
@@ -107,7 +99,6 @@ export function finish({ completed = false, silent = false } = {}) {
         end,
         effectiveMs,
         pausedMs: Math.max(0, end - t.sessionStart - effectiveMs),
-        distractions: t.distractions,
         pauses: t.pauses,
         completed,
       };

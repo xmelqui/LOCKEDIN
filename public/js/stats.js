@@ -33,9 +33,6 @@ function compute(days) {
     }
   }
 
-  const distractions = inRange.reduce((a, s) => a + s.distractions, 0);
-  const focusHours = inRange.reduce((a, s) => a + s.effectiveMs, 0) / 3_600_000;
-
   const byCat = CATEGORIES.map((c) => ({
     ...c,
     ms: inRange.filter((s) => s.category === c.id).reduce((a, s) => a + s.effectiveMs, 0),
@@ -56,7 +53,7 @@ function compute(days) {
     }
   }
 
-  return { goal, daily, total, metDays, streak, past, kept, distractions, focusHours, byCat, byHour };
+  return { goal, daily, total, metDays, streak, past, kept, byCat, byHour };
 }
 
 function dailyChart(daily, goal) {
@@ -121,7 +118,6 @@ export function renderStats() {
   const d = compute(range);
   const avg = d.total / range;
   const adherence = d.past ? Math.round((d.kept / d.past) * 100) : null;
-  const dph = d.focusHours > 0 ? (d.distractions / d.focusHours).toFixed(1) : '—';
   const maxCat = Math.max(...d.byCat.map((c) => c.ms), 1);
   const bestHour = d.byHour.some((x) => x > 0) ? d.byHour.indexOf(Math.max(...d.byHour)) : null;
 
@@ -138,7 +134,6 @@ export function renderStats() {
       <div class="tile"><span>Days goal met</span><b>${d.metDays}<small>/${range}</small></b></div>
       <div class="tile"><span>Current streak</span><b>${d.streak} ${d.streak === 1 ? 'day' : 'days'}</b></div>
       <div class="tile"><span>Plan adherence</span><b>${adherence == null ? '—' : `${adherence}%`}</b><small>${d.kept}/${d.past} blocks started</small></div>
-      <div class="tile"><span>Distractions per hour</span><b>${dph}</b></div>
     </div>
     <section class="card">
       <h3 class="card-title">Effective focus per day</h3>

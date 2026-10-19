@@ -1,6 +1,6 @@
 import { state, save, blocksOn, sessionsOn, blockStarted, toggleDone, CATEGORIES, catName } from './store.js';
 import { openBlockModal } from './blockModal.js';
-import { startFocus, startBreak, pause, resume, finish, logDistraction, elapsedMs, remainingMs, effectiveOn, pomodorosToday } from './timer.js';
+import { startFocus, startBreak, pause, resume, finish, elapsedMs, remainingMs, effectiveOn, pomodorosToday } from './timer.js';
 import { $, dateKey, escapeHtml, fmtClock, fmtDuration, fmtHour, fmtDayLong } from './utils.js';
 
 const DURATIONS = [
@@ -87,10 +87,8 @@ function timerHtml() {
         </div>
       </div>
       ${t.mode === 'focus' ? `<h3 class="timer-title">${escapeHtml(t.title)}</h3>` : '<h3 class="timer-title">Get up, stretch, drink some water. No screens.</h3>'}
-      ${t.mode === 'focus' ? `<p class="timer-meta">Distractions: <b>${t.distractions}</b> · Pauses: <b>${t.pauses}</b></p>` : ''}
       <div class="btn-row center">
         ${paused ? '<button class="btn btn-primary" data-act="resume">▶ Resume</button>' : '<button class="btn" data-act="pause">❚❚ Pause</button>'}
-        ${t.mode === 'focus' ? '<button class="btn" data-act="distraction" title="Log that you got distracted and get back to the task">Got distracted</button>' : ''}
         ${t.mode === 'focus' ? '<button class="btn btn-ghost" data-act="stop">■ Finish</button>' : '<button class="btn btn-ghost" data-act="skip">Skip break</button>'}
       </div>
       <div class="pomos">${dots}<span>${n} today</span></div>
@@ -105,7 +103,6 @@ function progressHtml(dk) {
   const planned = blocks.reduce((a, b) => a + (b.endTs - b.startTs), 0);
   const doneN = blocks.filter((b) => b.done).length;
   const sessions = sessionsOn(dk);
-  const distractions = sessions.reduce((a, x) => a + x.distractions, 0) + (state.timer?.distractions ?? 0);
   const pct = Math.min(100, (eff / goal) * 100);
   return `
     <h2 class="card-title">Effective focus today</h2>
@@ -117,7 +114,6 @@ function progressHtml(dk) {
       <div><span>Planned</span><b>${fmtDuration(planned)}</b></div>
       <div><span>Blocks done</span><b>${doneN}/${blocks.length}</b></div>
       <div><span>Sessions</span><b>${sessions.length}</b></div>
-      <div><span>Distractions</span><b>${distractions}</b></div>
     </div>`;
 }
 
@@ -202,7 +198,7 @@ function bind(root) {
     save();
   }));
 
-  const acts = { pause, resume, distraction: logDistraction, stop: () => finish(), skip: () => finish() };
+  const acts = { pause, resume, stop: () => finish(), skip: () => finish() };
   root.querySelectorAll('[data-act]').forEach((b) => (b.onclick = () => acts[b.dataset.act]()));
 }
 

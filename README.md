@@ -9,7 +9,7 @@ A desktop app to beat procrastination: a time-block calendar, a focus timer and 
 The installer is rebuilt and published automatically to [Releases](https://github.com/xmelqui/LOCKEDIN/releases) on every push to `main`. To publish a new version instead of updating the current one, bump `version` in `package.json`.
 
 - **Closing the window** keeps LockedIn running in the **system tray** (next to the clock), where it keeps reminding you. To quit completely: right-click the icon → *Quit*.
-- From the tray icon you can start a quick focus session, pause, log a distraction or finish the session.
+- From the tray icon you can start a quick focus session, pause or finish the session.
 - It uses native Windows notifications. Urgent ones **flash the taskbar icon**, and the taskbar icon shows the timer's progress.
 - With *Settings → Launch LockedIn when Windows starts*, the app starts minimized to the tray when you turn on your PC.
 
@@ -26,7 +26,7 @@ npm run web      # web version at http://localhost:4321 (no Electron)
 
 ## Features
 
-- **Today**: suggests the block you should be working on *right now*, with its concrete first step. Includes a focus timer (5/25/50/90 min or open-ended) with pause, a "Got distracted" counter, automatic breaks and a long break every N blocks.
+- **Today**: suggests the block you should be working on *right now*, with its concrete first step. Includes a focus timer (5/25/50/90 min or open-ended) with pause, automatic breaks and a long break every N blocks.
 - **Weekly calendar**: planned blocks with a category, recurrence (daily, weekdays or weekly), a reminder and a "first step". A thin strip on each day shows your **actual focus** next to your **plan**. Blocks you never started are shown hatched.
 - **Notifications**:
   - a reminder X minutes before each block;
@@ -35,7 +35,7 @@ npm run web      # web version at http://localhost:4321 (no Electron)
   - at the end of a block, so you can mark it as done;
   - when a focus block or a break ends;
   - a plan-your-day reminder if you have no blocks, and an evening summary with your progress toward the daily goal.
-- **Stats** (7, 30 or 90 days): effective focus per day against your goal, streak, plan adherence, distractions per hour, breakdown by category, and the hours of the day when you're most productive.
+- **Stats** (7, 30 or 90 days): effective focus per day against your goal, streak, plan adherence, breakdown by category, and the hours of the day when you're most productive.
 - **Settings and data**: everything is stored locally. You can export and import a JSON backup.
 
 ## Limitations
