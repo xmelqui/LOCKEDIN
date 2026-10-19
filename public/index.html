@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'" />
+  <title>LockedIn</title>
+  <meta name="description" content="Calendar, focus timer and reminders to stop procrastinating." />
+  <meta name="theme-color" content="#2a78d6" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#today"><img src="icon.svg" alt="" width="26" height="26" /> LockedIn</a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#today">Today</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#stats">Stats</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </header>
+
+  <div id="perm-banner" class="banner" hidden>
+    <span>🔔 Enable notifications to get reminders and nudges even when you're in another window.</span>
+    <button class="btn btn-primary btn-sm">Enable</button>
+  </div>
+
+  <main>
+    <section id="view-today" class="view"></section>
+    <section id="view-calendar" class="view" hidden></section>
+    <section id="view-stats" class="view" hidden></section>
+    <section id="view-settings" class="view" hidden></section>
+  </main>
+
+  <dialog id="block-dialog"></dialog>
+  <div id="toasts" aria-live="polite"></div>
+</body>
+</html>

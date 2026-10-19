@@ -1,0 +1,49 @@
+{
+  "name": "lockedin",
+  "productName": "LockedIn",
+  "version": "1.0.0",
+  "description": "Calendar, focus timer and reminders to beat procrastination",
+  "author": "MasterVodka",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "web": "node server.js",
+    "dist": "electron-builder --win nsis"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
+  },
+  "allowScripts": {
+    "electron@44.9.0": true
+  },
+  "build": {
+    "appId": "com.lockedin.app",
+    "productName": "LockedIn",
+    "files": [
+      "electron/**",
+      "public/**",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "electron/icon.png",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "LockedIn"
+    }
+  }
+}
